@@ -153,90 +153,89 @@ export default function Projects() {
       {/* ── Side-by-side carousels ── */}
       <div className="max-w-[1200px] mx-auto px-5 md:px-16 py-8">
 
-        {/* Outer card */}
-        <div className="border border-ink-5 overflow-hidden" style={{ borderRadius: "0.3rem" }}>
+        {/* Two self-contained project columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-          {/* Project meta header — two projects */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-ink-5 border-b border-ink-5">
-            {/* BayKart */}
-            <div className="px-6 md:px-8 py-6 bg-ink-2 flex flex-col gap-3">
+          {/* ── BayKart column ── */}
+          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+            {/* Description */}
+            <div className="px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">01</span>
-                <span className="font-mono text-[0.62rem] tracking-wider uppercase text-smoke-2">AgriTech · Mobile · AI</span>
+                <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">AgriTech · Mobile · AI</span>
               </div>
-              <h3 className="font-sans text-lg md:text-xl font-bold text-paper leading-tight">
+              <h3 className="font-sans text-lg font-bold text-paper leading-tight">
                 BayKart — Agricultural Marketplace
               </h3>
               <p className="font-sans text-sm text-smoke leading-relaxed">
                 End-to-end platform for African farmers. Real-time commodity pricing, AI crop analysis, and verified buyer-seller matching.
               </p>
-              <div className="flex flex-wrap gap-1.5 mt-1">
+              <div className="flex flex-wrap gap-1.5">
                 {["10K+ Farmers", "60% Price Loss ↓", "iOS + Android"].map((s) => (
                   <span key={s} className="chip chip-white">{s}</span>
                 ))}
               </div>
             </div>
-            {/* Store POS */}
-            <div className="px-6 md:px-8 py-6 bg-ink-2 flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">02</span>
-                <span className="font-mono text-[0.62rem] tracking-wider uppercase text-smoke-2">Retail · Web · Full-stack</span>
-              </div>
-              <h3 className="font-sans text-lg md:text-xl font-bold text-paper leading-tight">
-                Store POS — Point of Sale System
-              </h3>
-              <p className="font-sans text-sm text-smoke leading-relaxed">
-                Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation.
-              </p>
-              <div className="flex flex-wrap gap-1.5 mt-1">
-                {["650+ SKUs", "Multi-cashier", "Offline-first"].map((s) => (
-                  <span key={s} className="chip chip-white">{s}</span>
-                ))}
-              </div>
+            {/* Type badge */}
+            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+                Mobile App · iOS &amp; Android
+              </span>
             </div>
-          </div>
-
-          {/* ── Two-panel carousels ── */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-ink-5 bg-ink">
-
-            {/* Left — BayKart mobile */}
-            <div className="flex flex-col">
-              <div className="px-6 py-3 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
-                <span className="font-mono text-[0.6rem] tracking-widest uppercase text-smoke-2">
-                  Mobile App · iOS &amp; Android
-                </span>
-              </div>
+            {/* Carousel */}
+            <div className="flex-1 bg-ink">
               <ProjectCarousel slides={baykartSlides} interval={3800} />
             </div>
-
-            {/* Right — POS desktop carousel */}
-            <div className="flex flex-col">
-              <div className="px-6 py-3 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
-                <span className="font-mono text-[0.6rem] tracking-widest uppercase text-smoke-2">
-                  Web App · Windows Desktop
-                </span>
-              </div>
-              <ProjectCarousel slides={posSlides} interval={4200} screenMode />
-            </div>
-          </div>
-
-          {/* Stack rows */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-ink-5 border-t border-ink-5">
-            <div className="px-6 md:px-8 py-4 bg-ink-2 flex flex-wrap items-center gap-2">
+            {/* Stack */}
+            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React Native", "Django", "AWS", "Terraform", "PostgreSQL", "Redis"].map((t) => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
-            <div className="px-6 md:px-8 py-4 bg-ink-2 flex flex-wrap items-center gap-2">
+          </div>
+
+          {/* ── Store POS column ── */}
+          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+            {/* Description */}
+            <div className="px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">02</span>
+                <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">Retail · Web · Full-stack</span>
+              </div>
+              <h3 className="font-sans text-lg font-bold text-paper leading-tight">
+                Store POS — Point of Sale System
+              </h3>
+              <p className="font-sans text-sm text-smoke leading-relaxed">
+                Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {["650+ SKUs", "Multi-cashier", "Offline-first"].map((s) => (
+                  <span key={s} className="chip chip-white">{s}</span>
+                ))}
+              </div>
+            </div>
+            {/* Type badge */}
+            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+                Web App · Windows Desktop
+              </span>
+            </div>
+            {/* Carousel */}
+            <div className="flex-1 bg-ink">
+              <ProjectCarousel slides={posSlides} interval={4200} screenMode />
+            </div>
+            {/* Stack */}
+            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
           </div>
+
         </div>
       </div>
 
