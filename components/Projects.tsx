@@ -158,8 +158,17 @@ export default function Projects() {
 
           {/* ── BayKart column ── */}
           <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-            {/* Description */}
-            <div className="px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3">
+            {/* Description — mobile: blurred screenshot as bg */}
+            <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
+              <img
+                src="/images/marketplace-listing.png"
+                aria-hidden="true"
+                alt=""
+                className="lg:hidden absolute inset-0 w-full h-full object-cover object-center"
+                style={{ filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
+              />
+              <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
+              <div className="relative z-10 flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">01</span>
                 <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">AgriTech · Mobile · AI</span>
@@ -175,7 +184,8 @@ export default function Projects() {
                   <span key={s} className="chip chip-white">{s}</span>
                 ))}
               </div>
-            </div>
+              </div>{/* /z-10 content */}
+            </div>{/* /description */}
             {/* Type badge */}
             <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
@@ -184,9 +194,7 @@ export default function Projects() {
               </span>
             </div>
             {/* Carousel */}
-            <div className="flex-1 bg-ink">
-              <ProjectCarousel slides={baykartSlides} interval={3800} />
-            </div>
+            <ProjectCarousel slides={baykartSlides} interval={3800} fill />
             {/* Stack */}
             <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
@@ -198,8 +206,17 @@ export default function Projects() {
 
           {/* ── Store POS column ── */}
           <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-            {/* Description */}
-            <div className="px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3">
+            {/* Description — mobile: blurred POS screenshot as bg */}
+            <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
+              <img
+                src="/images/pos/pos-dashboard.png"
+                aria-hidden="true"
+                alt=""
+                className="lg:hidden absolute inset-0 w-full h-full object-cover object-top"
+                style={{ filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
+              />
+              <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
+              <div className="relative z-10 flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">02</span>
                 <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">Retail · Web · Full-stack</span>
@@ -215,7 +232,8 @@ export default function Projects() {
                   <span key={s} className="chip chip-white">{s}</span>
                 ))}
               </div>
-            </div>
+              </div>{/* /z-10 content */}
+            </div>{/* /description */}
             {/* Type badge */}
             <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
@@ -224,9 +242,7 @@ export default function Projects() {
               </span>
             </div>
             {/* Carousel */}
-            <div className="flex-1 bg-ink">
-              <ProjectCarousel slides={posSlides} interval={4200} screenMode />
-            </div>
+            <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
             {/* Stack */}
             <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
