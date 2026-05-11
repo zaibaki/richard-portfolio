@@ -65,7 +65,6 @@ export default function ProjectCarousel({
 
   if (!deck.length) return null;
 
-  const intervalLabel = `${(interval / 1000).toFixed(interval % 1000 === 0 ? 0 : 1)}s`;
   const current = deck[index];
 
   return (
@@ -76,39 +75,9 @@ export default function ProjectCarousel({
     >
       {/* ── Stage ─────────────────────────────── */}
       <div
-        className={`relative bg-ink overflow-hidden flex items-center justify-center${fill ? " flex-1 min-h-0" : ""}`}
+        className={`relative bg-ink overflow-hidden flex items-center justify-center py-8${fill ? " flex-1 min-h-0" : ""}`}
         style={fill ? undefined : { height: screenMode ? "460px" : "620px" }}
       >
-        {/* Progress bar */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-ink-5 z-30">
-          <div
-            key={`pb-${index}-${resetKey}-${paused}`}
-            className="h-full bg-white/40"
-            style={
-              paused
-                ? { width: "0%" }
-                : { animation: `progress-bar ${interval}ms linear forwards` }
-            }
-          />
-        </div>
-
-        {/* Autoplay badge */}
-        <div
-          className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-ink-4/80 border border-ink-5 px-2 py-1 backdrop-blur-sm"
-          style={{ borderRadius: "0.2rem" }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{
-              background: paused ? "#444" : "#4ade80",
-              animation:  paused ? "none" : "pulse-dot 1.8s ease-in-out infinite",
-            }}
-          />
-          <span className="font-mono text-[0.52rem] tracking-widest uppercase text-smoke-3">
-            {paused ? "paused" : `auto · ${intervalLabel}`}
-          </span>
-        </div>
-
         {/* Ambient colour bleed */}
         <div className="absolute inset-0 pointer-events-none transition-opacity duration-700" aria-hidden="true">
           <img
@@ -162,7 +131,7 @@ export default function ProjectCarousel({
         {/* ── Mobile phone frames ── */}
         {!screenMode && (
           <div
-            className="relative z-10 w-[286px] h-[580px]"
+            className="relative z-10 w-[286px] h-[520px]"
             style={{
               borderRadius: "1.2rem",
               overflow:     "hidden",
