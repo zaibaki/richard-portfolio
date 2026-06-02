@@ -120,7 +120,7 @@ export default function Hero() {
               height={424}
               alt="BayKart account — Richard Karanu"
               className="drop-shadow-2xl"
-              style={{ borderRadius: "1.2rem" }}
+              style={{ borderRadius: "0.3rem" }}
             />
           </div>
 
@@ -135,7 +135,7 @@ export default function Hero() {
               height={484}
               alt="BayKart home dashboard"
               className="drop-shadow-2xl"
-              style={{ borderRadius: "1.2rem" }}
+              style={{ borderRadius: "0.3rem" }}
             />
           </div>
 
@@ -150,7 +150,7 @@ export default function Hero() {
               height={544}
               alt="BayKart marketplace listing"
               className="drop-shadow-2xl"
-              style={{ borderRadius: "1.2rem" }}
+              style={{ borderRadius: "0.3rem" }}
               priority
             />
           </div>

@@ -133,19 +133,18 @@ export default function ProjectCarousel({
           <div
             className="relative z-10 w-[286px] h-[520px]"
             style={{
-              borderRadius: "1.2rem",
-              overflow:     "hidden",
-              boxShadow:    "0 32px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)",
+              boxShadow: "0 32px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)",
             }}
           >
             {deck.map((s, i) => (
               <div
                 key={s.src}
-                className="absolute inset-0 transition-all duration-500 ease-in-out"
+                className="absolute inset-0 transition-all duration-500 ease-in-out overflow-hidden"
                 style={{
                   opacity:       i === index ? 1    : 0,
                   transform:     i === index ? "scale(1)" : "scale(0.96)",
                   pointerEvents: i === index ? "auto" : "none",
+                  borderRadius:  "0.3rem",
                 }}
               >
                 <Image
