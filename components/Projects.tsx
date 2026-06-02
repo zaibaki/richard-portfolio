@@ -2,7 +2,7 @@ import Image from "next/image";
 import ProjectCarousel, { type CarouselSlide } from "./ProjectCarousel";
 import MoreWork from "./MoreWork";
 
-/* ── BayKart slides — real device photos ────── */
+/* ── BayKart slides ──────────────────────────── */
 const baykartSlides: CarouselSlide[] = [
   {
     src:         "/images/home-dashboard.png",
@@ -60,7 +60,59 @@ const baykartSlides: CarouselSlide[] = [
   },
 ];
 
-/* ── POS slides ─────────────────────────────── */
+/* ── SmartChef slides ────────────────────────── */
+const smartchefSlides: CarouselSlide[] = [
+  {
+    src:         "/images/smartchef/home.png",
+    alt:         "SmartChef — The Kitchen home screen",
+    label:       "The Kitchen",
+    description: "AI-powered home screen with recent recipes, cooking inspiration, and one-tap camera ingredient scan",
+  },
+  {
+    src:         "/images/smartchef/scan.png",
+    alt:         "SmartChef — ingredient detection",
+    label:       "AI Ingredient Scanner",
+    description: "Point your camera at any ingredients — the app detects them instantly and generates a tailored recipe",
+  },
+  {
+    src:         "/images/smartchef/recipe.png",
+    alt:         "SmartChef — generated recipe card",
+    label:       "AI-Generated Recipe",
+    description: "Full recipe with prep time, cook time, servings, and scalable ingredient list — generated from your scan",
+  },
+  {
+    src:         "/images/smartchef/steps.png",
+    alt:         "SmartChef — step-by-step instructions",
+    label:       "Step-by-Step Guide",
+    description: "Guided cooking instructions with integrated kitchen timers and chef tips at every step",
+  },
+  {
+    src:         "/images/smartchef/cooking.png",
+    alt:         "SmartChef — start cooking mode",
+    label:       "Start Cooking Mode",
+    description: "Nutrition info, chef tips, and an AI chat assistant — ask substitutions, technique, or anything",
+  },
+  {
+    src:         "/images/smartchef/recipes.png",
+    alt:         "SmartChef — recipe library",
+    label:       "Recipe Library",
+    description: "All your generated recipes saved and organised by date — filter, favourite, and revisit anytime",
+  },
+  {
+    src:         "/images/smartchef/favourites.png",
+    alt:         "SmartChef — favourites",
+    label:       "Favourites",
+    description: "Star your best recipes for quick access — your personal cookbook, always in your pocket",
+  },
+  {
+    src:         "/images/smartchef/planner.png",
+    alt:         "SmartChef — meal planner",
+    label:       "Meal Planner",
+    description: "Plan breakfast, lunch, and dinner for the whole week — drag recipes from your library into any slot",
+  },
+];
+
+/* ── POS slides ──────────────────────────────── */
 const posSlides: CarouselSlide[] = [
   {
     src:         "/images/pos/pos-terminal.png",
@@ -106,13 +158,48 @@ const posSlides: CarouselSlide[] = [
   },
 ];
 
-
+/* ── Shared description card ─────────────────── */
+function ProjectHeader({
+  num, category, title, description, chips, mobileBg, mobileBgPosition = "center",
+}: {
+  num: string;
+  category: string;
+  title: string;
+  description: string;
+  chips: string[];
+  mobileBg: string;
+  mobileBgPosition?: string;
+}) {
+  return (
+    <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
+      <img
+        src={mobileBg}
+        aria-hidden="true"
+        alt=""
+        className="lg:hidden absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: mobileBgPosition, filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
+      />
+      <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
+      <div className="relative z-10 flex flex-col gap-3">
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">{num}</span>
+          <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">{category}</span>
+        </div>
+        <h3 className="font-sans text-lg font-bold text-paper leading-tight">{title}</h3>
+        <p className="font-sans text-sm text-smoke leading-relaxed">{description}</p>
+        <div className="flex flex-wrap gap-1.5">
+          {chips.map((s) => <span key={s} className="chip chip-white">{s}</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Projects() {
   return (
     <section id="work" className="relative">
 
-      {/* ── Section header with work-bg.jpg ── */}
+      {/* Section header */}
       <div className="relative overflow-hidden border-t border-ink-5">
         <Image
           src="/images/work-bg.jpg"
@@ -123,61 +210,34 @@ export default function Projects() {
           aria-hidden="true"
         />
         <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-16 pt-20 pb-10">
-          <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-smoke-2 mb-3">
-            Featured Work
-          </p>
+          <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-smoke-2 mb-3">Featured Work</p>
           <h2 className="font-sans text-5xl md:text-7xl font-black text-paper tracking-tight leading-none">
             What I Build.
           </h2>
         </div>
       </div>
 
-      {/* ── Side-by-side carousels ── */}
-      <div className="max-w-[1200px] mx-auto px-5 md:px-16 py-8">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-16 py-8 flex flex-col gap-4">
 
-        {/* Two self-contained project columns */}
+        {/* ── Row 1: BayKart + SmartChef (both iOS) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-          {/* ── BayKart column ── */}
+          {/* BayKart */}
           <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-            {/* Description — mobile: blurred screenshot as bg */}
-            <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
-              <img
-                src="/images/marketplace-listing.png"
-                aria-hidden="true"
-                alt=""
-                className="lg:hidden absolute inset-0 w-full h-full object-cover object-center"
-                style={{ filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
-              />
-              <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
-              <div className="relative z-10 flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">01</span>
-                <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">AgriTech · Mobile · AI</span>
-              </div>
-              <h3 className="font-sans text-lg font-bold text-paper leading-tight">
-                BayKart — Agricultural Marketplace
-              </h3>
-              <p className="font-sans text-sm text-smoke leading-relaxed">
-                End-to-end platform for African farmers. Real-time commodity pricing, AI crop analysis, and verified buyer-seller matching.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {["10K+ Farmers", "60% Price Loss ↓", "iOS + Android"].map((s) => (
-                  <span key={s} className="chip chip-white">{s}</span>
-                ))}
-              </div>
-              </div>{/* /z-10 content */}
-            </div>{/* /description */}
-            {/* Type badge */}
+            <ProjectHeader
+              num="01" category="AgriTech · Mobile · AI"
+              title="BayKart — Agricultural Marketplace"
+              description="End-to-end platform for African farmers. Real-time commodity pricing, AI crop analysis, and verified buyer-seller matching."
+              chips={["10K+ Farmers", "60% Price Loss ↓", "iOS + Android"]}
+              mobileBg="/images/marketplace-listing.png"
+            />
             <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
               <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
                 Mobile App · iOS &amp; Android
               </span>
             </div>
-            {/* Carousel */}
             <ProjectCarousel slides={baykartSlides} interval={3800} fill />
-            {/* Stack */}
             <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React Native", "Django", "AWS", "Terraform", "PostgreSQL", "Redis"].map((t) => (
@@ -186,58 +246,60 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* ── Store POS column ── */}
+          {/* SmartChef */}
           <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-            {/* Description — mobile: blurred POS screenshot as bg */}
-            <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
-              <img
-                src="/images/pos/pos-dashboard.png"
-                aria-hidden="true"
-                alt=""
-                className="lg:hidden absolute inset-0 w-full h-full object-cover object-top"
-                style={{ filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
-              />
-              <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
-              <div className="relative z-10 flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">02</span>
-                <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">Retail · Web · Full-stack</span>
-              </div>
-              <h3 className="font-sans text-lg font-bold text-paper leading-tight">
-                Store POS — Point of Sale System
-              </h3>
-              <p className="font-sans text-sm text-smoke leading-relaxed">
-                Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {["650+ SKUs", "Multi-cashier", "Offline-first"].map((s) => (
-                  <span key={s} className="chip chip-white">{s}</span>
-                ))}
-              </div>
-              </div>{/* /z-10 content */}
-            </div>{/* /description */}
-            {/* Type badge */}
+            <ProjectHeader
+              num="02" category="FoodTech · iOS · AI"
+              title="SmartChef — AI Recipe Generator"
+              description="Point your camera at any ingredients — SmartChef detects them, generates a personalised recipe, and guides you step-by-step through cooking it."
+              chips={["AI Ingredient Scan", "Meal Planner", "Ask the Chef"]}
+              mobileBg="/images/smartchef/home.png"
+            />
             <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
               <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
-                Web App · Windows Desktop
+                iOS App · iPhone
               </span>
             </div>
-            {/* Carousel */}
-            <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
-            {/* Stack */}
+            <ProjectCarousel slides={smartchefSlides} interval={3600} fill />
             <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
-              {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
+              {["Swift", "SwiftUI", "UIKit", "iOS"].map((t) => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
           </div>
 
         </div>
+
+        {/* ── Row 2: Store POS (full-width) ── */}
+        <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+          <ProjectHeader
+            num="03" category="Retail · Web · Full-stack"
+            title="Store POS — Point of Sale System"
+            description="Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation."
+            chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
+            mobileBg="/images/pos/pos-dashboard.png"
+            mobileBgPosition="top"
+          />
+          <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+            <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+              Web App · Windows Desktop
+            </span>
+          </div>
+          <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
+          <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
+            <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
+            {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
+              <span key={t} className="tag">{t}</span>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* ── More work — collapsed by default ── */}
+      {/* More work — collapsed */}
       <div className="max-w-[1200px] mx-auto px-5 md:px-16 pb-20">
         <MoreWork />
       </div>
