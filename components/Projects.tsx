@@ -107,7 +107,7 @@ const smartchefSlides: CarouselSlide[] = [
   {
     src:         "/images/smartchef/planner.png",
     alt:         "SmartChef — meal planner",
-    label:       "Meal Planner",
+    label:       "Weekly Meal Plan",
     description: "Plan breakfast, lunch, and dinner for the whole week — drag recipes from your library into any slot",
   },
 ];
