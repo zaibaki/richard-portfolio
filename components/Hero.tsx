@@ -179,17 +179,7 @@ export default function Hero() {
         {/* ── Left: text ── */}
         <div className="flex flex-col gap-8">
 
-          {/* Hire Me CTA — top of hero */}
-          <div className="float-up-1">
-            <a
-              href="mailto:thisforrichard@gmail.com"
-              className="inline-flex items-center gap-2 font-mono text-[0.62rem] tracking-widest uppercase border border-ink-6 text-smoke hover:border-smoke hover:text-paper transition-all px-4 py-2"
-              style={{ borderRadius: "0.2rem" }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" style={{ animation: "pulse-dot 2.5s ease-in-out infinite" }} />
-              Available for Opportunities
-            </a>
-          </div>
+
 
           {/* Name */}
           <div className="float-up-2">
