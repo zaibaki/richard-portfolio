@@ -229,7 +229,7 @@ function ProjectHeader({
   mobileBgPosition?: string;
 }) {
   return (
-    <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col justify-between overflow-hidden lg:h-[180px]">
+    <div className="relative px-6 md:px-7 pt-5 pb-7 bg-ink-2 border-b border-ink-5 flex flex-col justify-between overflow-hidden lg:h-[200px]">
       <img
         src={mobileBg}
         aria-hidden="true"
@@ -332,38 +332,13 @@ export default function Projects() {
 
         </div>
 
-        {/* ── Row 2: Store POS + FocusFlow ── */}
+        {/* ── Row 2: FocusFlow + Store POS ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-          {/* Store POS */}
-          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-            <ProjectHeader
-              num="03" category="Retail · Web · Full-stack"
-              title="Store POS — Point of Sale System"
-              description="Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation."
-              chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
-              mobileBg="/images/pos/pos-dashboard.png"
-              mobileBgPosition="top"
-            />
-            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
-              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
-                Web App · Windows Desktop
-              </span>
-            </div>
-            <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
-            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
-              <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
-              {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
-                <span key={t} className="tag">{t}</span>
-              ))}
-            </div>
-          </div>
 
           {/* FocusFlow */}
           <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
             <ProjectHeader
-              num="04" category="Productivity · Mobile · UX"
+              num="03" category="Productivity · Mobile · UX"
               title="FocusFlow — Gamified Deep Work App"
               description="A beautiful mobile app helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with gamified rewards."
               chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
@@ -379,6 +354,31 @@ export default function Projects() {
             <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"].map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Store POS */}
+          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+            <ProjectHeader
+              num="04" category="Retail · Web · Full-stack"
+              title="Store POS — Point of Sale System"
+              description="Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation."
+              chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
+              mobileBg="/images/pos/pos-dashboard.png"
+              mobileBgPosition="top"
+            />
+            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+                Open Source Project · Desktop App
+              </span>
+            </div>
+            <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
+            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
+              <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
+              {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
