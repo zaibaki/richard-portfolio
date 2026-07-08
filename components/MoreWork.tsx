@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const projects = [
   {
-    num:    "03",
+    num:    "05",
     name:   "Multi-tenant API Infrastructure",
     client: "Kreatoors AI",
     blurb:  "Secure API infra for 20K+ users. Latency cut from 800 ms → 200 ms.",
@@ -12,7 +12,7 @@ const projects = [
     stack:  ["Node.js", "TypeScript", "MongoDB", "AWS"],
   },
   {
-    num:    "04",
+    num:    "06",
     name:   "Context-Aware AI Agents",
     client: "Miksi AI",
     blurb:  "BI agents with 90% SQL accuracy. Published Python SDK on PyPI — 200+ downloads.",

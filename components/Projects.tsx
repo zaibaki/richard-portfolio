@@ -158,6 +158,64 @@ const posSlides: CarouselSlide[] = [
   },
 ];
 
+/* ── FocusFlow slides ────────────────────────── */
+const focusSlides: CarouselSlide[] = [
+  {
+    src:         "/images/focus/Screenshot_20260621_183654.webp",
+    alt:         "FocusFlow dashboard — today's focus goals",
+    label:       "Dashboard Home",
+    description: "Daily focus analytics, goals checklist, active streak tracker, and quick-start session panel",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183724.webp",
+    alt:         "FocusFlow active session timer",
+    label:       "Immersive Focus Timer",
+    description: "Distraction-free countdown mode with minimalist dial, focus target tracking, and white-noise controls",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183759.webp",
+    alt:         "FocusFlow session pause state",
+    label:       "Smart Session Pause",
+    description: "Gentle warning screen helping users avoid abandonment and return to their focus zone quickly",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183822.webp",
+    alt:         "FocusFlow session completion screen",
+    label:       "Session Completed!",
+    description: "Rewards readout including focus score, total focused minutes, XP tokens, and break timer initialization",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183843.webp",
+    alt:         "FocusFlow integrated task manager",
+    label:       "Deep Work Task Board",
+    description: "Create and prioritize tasks to tie directly into your focus timer, tracking time-to-complete metrics",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183900.webp",
+    alt:         "FocusFlow distraction shield settings",
+    label:       "Distraction Shield Configuration",
+    description: "Configure the active system blocklist to temporarily lock out distracting apps and disable notifications",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183914.webp",
+    alt:         "FocusFlow analytics and charts",
+    label:       "Focus Analytics",
+    description: "Granular charts showing weekly productivity patterns, focus category splits, and historical trends",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183937.webp",
+    alt:         "FocusFlow achievements and milestones",
+    label:       "Milestones & Gamification",
+    description: "Level up your focus rank, unlock badges, and track your metrics progression over time",
+  },
+  {
+    src:         "/images/focus/Screenshot_20260621_183947.webp",
+    alt:         "FocusFlow global settings and sounds",
+    label:       "Custom Settings",
+    description: "Adjust target intervals (classic Pomodoro vs. custom), notification sound presets, and backup options",
+  },
+];
+
 /* ── Shared description card ─────────────────── */
 function ProjectHeader({
   num, category, title, description, chips, mobileBg, mobileBgPosition = "center",
@@ -272,29 +330,58 @@ export default function Projects() {
 
         </div>
 
-        {/* ── Row 2: Store POS (full-width) ── */}
-        <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
-          <ProjectHeader
-            num="03" category="Retail · Web · Full-stack"
-            title="Store POS — Point of Sale System"
-            description="Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation."
-            chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
-            mobileBg="/images/pos/pos-dashboard.png"
-            mobileBgPosition="top"
-          />
-          <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
-            <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
-              Web App · Windows Desktop
-            </span>
+        {/* ── Row 2: Store POS + FocusFlow ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+          {/* Store POS */}
+          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+            <ProjectHeader
+              num="03" category="Retail · Web · Full-stack"
+              title="Store POS — Point of Sale System"
+              description="Full-stack POS with inventory management, sales analytics, multi-cashier support, and real-time stock reconciliation."
+              chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
+              mobileBg="/images/pos/pos-dashboard.png"
+              mobileBgPosition="top"
+            />
+            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+                Web App · Windows Desktop
+              </span>
+            </div>
+            <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
+            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
+              <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
+              {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
           </div>
-          <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
-          <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
-            <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
-            {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
-              <span key={t} className="tag">{t}</span>
-            ))}
+
+          {/* FocusFlow */}
+          <div className="border border-ink-5 overflow-hidden flex flex-col" style={{ borderRadius: "0.3rem" }}>
+            <ProjectHeader
+              num="04" category="Productivity · Mobile · UX"
+              title="FocusFlow — Gamified Deep Work App"
+              description="A beautiful mobile app helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with gamified rewards."
+              chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
+              mobileBg="/images/focus/Screenshot_20260621_183654.webp"
+            />
+            <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" aria-hidden="true" />
+              <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-2">
+                Mobile App · iOS &amp; Android
+              </span>
+            </div>
+            <ProjectCarousel slides={focusSlides} interval={4000} fill />
+            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2">
+              <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
+              {["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"].map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
           </div>
+
         </div>
 
       </div>

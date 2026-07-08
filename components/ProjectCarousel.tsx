@@ -34,7 +34,7 @@ export default function ProjectCarousel({
   fill       = false,
 }: Props) {
   /* Fair random: shuffle once on mount, reshuffle each full cycle */
-  const [deck,     setDeck]     = useState<CarouselSlide[]>(() => shuffle(slides));
+  const [deck,     setDeck]     = useState<CarouselSlide[]>(slides);
   const [index,    setIndex]    = useState(0);
   const [paused,   setPaused]   = useState(false);
   const [resetKey, setResetKey] = useState(0);
