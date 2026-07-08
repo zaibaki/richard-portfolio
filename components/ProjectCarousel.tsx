@@ -99,7 +99,7 @@ export default function ProjectCarousel({
     >
       {/* ── Stage ─────────────────────────────── */}
       <div
-        className="relative bg-ink flex items-center justify-center py-8 overflow-hidden w-full lg:h-[680px] h-[640px]"
+        className="relative bg-ink flex items-center justify-center py-8 overflow-hidden w-full lg:h-[680px] h-[640px] group"
       >
         {/* Ambient colour bleed with smooth cross-fade */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -317,10 +317,42 @@ export default function ProjectCarousel({
             </div>
           </div>
         )}
+
+        {/* Floating next/prev navigators */}
+        <button
+          onClick={(e) => { e.stopPropagation(); prev(); }}
+          className="absolute left-4 md:left-6 z-30 w-11 h-11 rounded-full bg-black/40 border border-ink-5 flex items-center justify-center text-smoke hover:text-cyan-400 hover:border-cyan-400 hover:bg-black/80 transition-all cursor-pointer shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100"
+          aria-label="Previous slide"
+        >
+          <span className="font-mono text-sm">←</span>
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); next(); }}
+          className="absolute right-4 md:right-6 z-30 w-11 h-11 rounded-full bg-black/40 border border-ink-5 flex items-center justify-center text-smoke hover:text-cyan-400 hover:border-cyan-400 hover:bg-black/80 transition-all cursor-pointer shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100"
+          aria-label="Next slide"
+        >
+          <span className="font-mono text-sm">→</span>
+        </button>
+
+        {/* Floating progress dots */}
+        <div className="absolute bottom-4 z-30 flex items-center gap-1.5 bg-black/50 px-3 py-1.5 rounded-full border border-ink-5/40 backdrop-blur-sm">
+          {deck.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); goTo(i); }}
+              aria-label={`Go to slide ${i + 1}`}
+              className="h-1.5 rounded-full transition-all duration-300 ease-out cursor-pointer"
+              style={{
+                width: i === index ? "16px" : "6px",
+                background: i === index ? "#22d3ee" : "#888888",
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* ── Info strip ───────────────────────── */}
-      <div className="bg-ink-3 border-t border-ink-5 px-5 pt-4 pb-4 flex flex-col gap-3 lg:h-[105px] justify-between">
+      <div className="bg-ink-3 border-t border-ink-5 px-5 py-4 flex flex-col justify-center lg:h-[90px]">
         <div key={index} className="slide-info-enter flex items-start justify-between gap-3">
           <div className="min-w-0 flex flex-col gap-1">
             <p className="font-sans text-sm font-semibold text-paper leading-snug line-clamp-1">
@@ -333,39 +365,6 @@ export default function ProjectCarousel({
           <span className="font-mono text-[0.58rem] tracking-widest text-smoke-3 tabular-nums shrink-0 pt-0.5">
             {String(index + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(deck.length).padStart(2, "0")}
           </span>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={prev}
-            aria-label="Previous slide"
-            className="flex items-center justify-center bg-ink-4 border border-ink-6 hover:border-smoke hover:text-paper text-smoke-2 transition-all"
-            style={{ width: 36, height: 36, borderRadius: "0.2rem", fontSize: "16px" }}
-          >
-            ←
-          </button>
-          <div className="flex-1 flex items-center justify-center gap-1.5">
-            {deck.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                aria-label={`Slide ${i + 1}`}
-                className="h-[3px] rounded-full transition-all duration-300 ease-out"
-                style={{
-                  width:      i === index ? "24px" : "6px",
-                  background: i === index ? "#ffffff" : "#2d2d2d",
-                }}
-              />
-            ))}
-          </div>
-          <button
-            onClick={next}
-            aria-label="Next slide"
-            className="flex items-center justify-center bg-ink-4 border border-ink-6 hover:border-smoke hover:text-paper text-smoke-2 transition-all"
-            style={{ width: 36, height: 36, borderRadius: "0.2rem", fontSize: "16px" }}
-          >
-            →
-          </button>
         </div>
       </div>
     </div>

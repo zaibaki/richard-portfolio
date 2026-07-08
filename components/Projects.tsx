@@ -288,7 +288,7 @@ export default function Projects() {
               num="01" category="AgriTech · Mobile · AI"
               title="BayKart — Agricultural Marketplace"
               description="End-to-end platform for African farmers. Real-time commodity pricing, AI crop analysis, and verified buyer-seller matching."
-              chips={["10K+ Farmers", "60% Price Loss ↓", "iOS + Android"]}
+              chips={["Real-time Pricing", "AI Crop Doctor", "Verified Buyers"]}
               mobileBg="/images/marketplace-listing.png"
             />
             <div className="px-6 py-2.5 border-b border-ink-5 bg-ink-2 flex items-center gap-2">
@@ -298,7 +298,7 @@ export default function Projects() {
               </span>
             </div>
             <ProjectCarousel slides={baykartSlides} interval={3800} fill />
-            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[54px]">
+            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React Native", "Django", "AWS", "Terraform", "PostgreSQL", "Redis"].map((t) => (
                 <span key={t} className="tag">{t}</span>
@@ -322,7 +322,7 @@ export default function Projects() {
               </span>
             </div>
             <ProjectCarousel slides={smartchefSlides} interval={3600} fill />
-            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[54px]">
+            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["Swift", "SwiftUI", "UIKit", "iOS"].map((t) => (
                 <span key={t} className="tag">{t}</span>
@@ -352,7 +352,7 @@ export default function Projects() {
               </span>
             </div>
             <ProjectCarousel slides={posSlides} interval={4200} screenMode fill />
-            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[54px]">
+            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker"].map((t) => (
                 <span key={t} className="tag">{t}</span>
@@ -376,7 +376,7 @@ export default function Projects() {
               </span>
             </div>
             <ProjectCarousel slides={focusSlides} interval={4000} fill />
-            <div className="px-6 py-3.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[54px]">
+            <div className="px-6 py-2.5 border-t border-ink-5 bg-ink-2 flex flex-wrap items-center gap-2 lg:h-[76px]">
               <span className="font-mono text-[0.55rem] tracking-widest uppercase text-smoke-3 mr-1">Stack</span>
               {["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"].map((t) => (
                 <span key={t} className="tag">{t}</span>
