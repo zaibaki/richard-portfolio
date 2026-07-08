@@ -99,8 +99,7 @@ export default function ProjectCarousel({
     >
       {/* ── Stage ─────────────────────────────── */}
       <div
-        className={`relative bg-ink flex items-center justify-center py-8 overflow-hidden${fill ? " flex-1 min-h-0" : ""}`}
-        style={fill ? undefined : { height: screenMode ? "460px" : "700px" }}
+        className="relative bg-ink flex items-center justify-center py-8 overflow-hidden w-full lg:h-[680px] h-[640px]"
       >
         {/* Ambient colour bleed with smooth cross-fade */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -321,7 +320,7 @@ export default function ProjectCarousel({
       </div>
 
       {/* ── Info strip ───────────────────────── */}
-      <div className="bg-ink-3 border-t border-ink-5 px-5 pt-4 pb-4 flex flex-col gap-3">
+      <div className="bg-ink-3 border-t border-ink-5 px-5 pt-4 pb-4 flex flex-col gap-3 lg:h-[105px] justify-between">
         <div key={index} className="slide-info-enter flex items-start justify-between gap-3">
           <div className="min-w-0 flex flex-col gap-1">
             <p className="font-sans text-sm font-semibold text-paper leading-snug line-clamp-1">
