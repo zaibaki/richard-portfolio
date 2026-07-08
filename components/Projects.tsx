@@ -229,7 +229,7 @@ function ProjectHeader({
   mobileBgPosition?: string;
 }) {
   return (
-    <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col gap-3 overflow-hidden">
+    <div className="relative px-6 md:px-7 py-6 bg-ink-2 border-b border-ink-5 flex flex-col justify-between overflow-hidden lg:min-h-[180px]">
       <img
         src={mobileBg}
         aria-hidden="true"
@@ -238,14 +238,16 @@ function ProjectHeader({
         style={{ objectPosition: mobileBgPosition, filter: "blur(18px)", transform: "scale(1.15)", opacity: 0.13 }}
       />
       <div className="lg:hidden absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%)" }} />
-      <div className="relative z-10 flex flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">{num}</span>
-          <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">{category}</span>
+      <div className="relative z-10 flex flex-col gap-2.5 h-full justify-between flex-grow">
+        <div className="flex flex-col gap-2.5">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke-3">{num}</span>
+            <span className="font-mono text-[0.6rem] tracking-wider uppercase text-smoke-2">{category}</span>
+          </div>
+          <h3 className="font-sans text-lg font-bold text-paper leading-tight">{title}</h3>
+          <p className="font-sans text-sm text-smoke leading-relaxed lg:min-h-[66px]">{description}</p>
         </div>
-        <h3 className="font-sans text-lg font-bold text-paper leading-tight">{title}</h3>
-        <p className="font-sans text-sm text-smoke leading-relaxed">{description}</p>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {chips.map((s) => <span key={s} className="chip chip-white">{s}</span>)}
         </div>
       </div>
