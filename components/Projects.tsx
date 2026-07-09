@@ -36,27 +36,7 @@ const voiceagentSlides: CarouselSlide[] = [
   },
 ];
 
-/* ── 03. Context-Aware AI Agents (Miksi AI) slides ── */
-const miksiSlides: CarouselSlide[] = [
-  {
-    src:         "/images/miksi-banner.jpg",
-    alt:         "Miksi SQL agent architecture map",
-    label:       "Context-Aware BI Agent Architecture",
-    description: "Agent pipeline mapping intent, context reasoning, and executing queries on Snowflake/databricks",
-  }
-];
-
-/* ── 04. Multi-tenant API Infrastructure (Kreatoors AI) slides ── */
-const kreatoorsSlides: CarouselSlide[] = [
-  {
-    src:         "/images/kreatoors-banner.jpg",
-    alt:         "Kreatoors API gateway infrastructure map",
-    label:       "Multi-tenant API Gateway Architecture",
-    description: "Scaled API infrastructure showing auth, rate limiters, DB pools, and Redis caching nodes",
-  }
-];
-
-/* ── 05. SmartChef slides ────────────────────── */
+/* ── 03. SmartChef slides ────────────────────── */
 const smartchefSlides: CarouselSlide[] = [
   {
     src:         "/images/smartchef/home.png",
@@ -108,7 +88,7 @@ const smartchefSlides: CarouselSlide[] = [
   },
 ];
 
-/* ── 06. BayKart slides ──────────────────────── */
+/* ── 04. BayKart slides ──────────────────────── */
 const baykartSlides: CarouselSlide[] = [
   {
     src:         "/images/home-dashboard.png",
@@ -166,7 +146,7 @@ const baykartSlides: CarouselSlide[] = [
   },
 ];
 
-/* ── 07. FocusFlow slides ────────────────────── */
+/* ── 05. FocusFlow slides ────────────────────── */
 const focusSlides: CarouselSlide[] = [
   {
     src:         "/images/focus/Screenshot_20260621_183654.webp",
@@ -224,6 +204,26 @@ const focusSlides: CarouselSlide[] = [
   },
 ];
 
+/* ── 06. Context-Aware AI Agents (Miksi AI) slides ── */
+const miksiSlides: CarouselSlide[] = [
+  {
+    src:         "/images/miksi-banner.jpg",
+    alt:         "Miksi SQL agent architecture map",
+    label:       "Context-Aware BI Agent Architecture",
+    description: "Agent pipeline mapping intent, context reasoning, and executing queries on Snowflake/databricks",
+  }
+];
+
+/* ── 07. Multi-tenant API Infrastructure (Kreatoors AI) slides ── */
+const kreatoorsSlides: CarouselSlide[] = [
+  {
+    src:         "/images/kreatoors-banner.jpg",
+    alt:         "Kreatoors API gateway infrastructure map",
+    label:       "Multi-tenant API Gateway Architecture",
+    description: "Scaled API infrastructure showing auth, rate limiters, DB pools, and Redis caching nodes",
+  }
+];
+
 /* ── 08. Store POS slides ────────────────────── */
 const posSlides: CarouselSlide[] = [
   {
@@ -271,6 +271,7 @@ const posSlides: CarouselSlide[] = [
 ];
 
 /* ── Helper Component: Alternating Project Row ── */
+/* Displays app text first on mobile, then alternates on desktop */
 function ProjectRow({
   num,
   category,
@@ -297,14 +298,7 @@ function ProjectRow({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center py-14 border-b border-ink-5 last:border-0">
       
-      {/* Visual / Carousel Column */}
-      <div className={`lg:col-span-6 flex justify-center w-full ${alignLeft ? "lg:order-1" : "lg:order-2"}`}>
-        <div className="border border-ink-5 overflow-hidden flex flex-col w-full" style={{ borderRadius: "0.4rem", boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
-          <ProjectCarousel slides={slides} interval={4000} screenMode={screenMode} />
-        </div>
-      </div>
-
-      {/* Text Details Column */}
+      {/* Text Details Column (DOM element 1 - flows first on mobile) */}
       <div className={`lg:col-span-6 flex flex-col gap-5 ${alignLeft ? "lg:order-2" : "lg:order-1"}`}>
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
@@ -342,6 +336,13 @@ function ProjectRow({
           ))}
         </div>
 
+      </div>
+
+      {/* Visual / Carousel Column (DOM element 2 - alternates on desktop) */}
+      <div className={`lg:col-span-6 flex justify-center w-full ${alignLeft ? "lg:order-1" : "lg:order-2"}`}>
+        <div className="border border-ink-5 overflow-hidden flex flex-col w-full" style={{ borderRadius: "0.4rem", boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+          <ProjectCarousel slides={slides} interval={4000} screenMode={screenMode} />
+        </div>
       </div>
 
     </div>
@@ -384,7 +385,7 @@ export default function Projects() {
               }`}
               style={{ borderRadius: "0.2rem" }}
             >
-              Systems &amp; AI (5)
+              Featured (5)
             </button>
             <button
               onClick={() => setShowAll(true)}
@@ -438,112 +439,115 @@ export default function Projects() {
             />
             {(() => { alignLeft = !alignLeft; return null; })()}
 
-            <ProjectRow
-              num="03"
-              category="AI Agent · BI Analytics · Context RAG"
-              title="Context-Aware AI Agents — Miksi AI"
-              description="A context-aware database business intelligence agent. Translates natural language queries to high-accuracy SQL queries by mapping metadata schemas and semantic vector indexes on Snowflake and Databricks."
-              chips={["90% SQL Accuracy", "Snowflake & Databricks", "Context RAG"]}
-              stack={["Python", "LangGraph", "FastAPI", "Snowflake", "Azure", "VectorDB"]}
-              slides={miksiSlides}
-              screenMode={true}
-              githubUrl="https://github.com/zaibaki/Miksi-AI"
-              alignLeft={alignLeft}
-            />
-            {(() => { alignLeft = !alignLeft; return null; })()}
+            {/* Conditionally rendered AI Systems */}
+            {showAll && (
+              <>
+                <ProjectRow
+                  num="06"
+                  category="AI Agent · BI Analytics · Context RAG"
+                  title="Context-Aware AI Agents — Miksi AI"
+                  description="A context-aware database business intelligence agent. Translates natural language queries to high-accuracy SQL queries by mapping metadata schemas and semantic vector indexes on Snowflake and Databricks."
+                  chips={["90% SQL Accuracy", "Snowflake & Databricks", "Context RAG"]}
+                  stack={["Python", "LangGraph", "FastAPI", "Snowflake", "Azure", "VectorDB"]}
+                  slides={miksiSlides}
+                  screenMode={true}
+                  githubUrl="https://github.com/zaibaki/Miksi-AI"
+                  alignLeft={alignLeft}
+                />
+                {(() => { alignLeft = !alignLeft; return null; })()}
 
-            <ProjectRow
-              num="04"
-              category="Systems · API Infrastructure · Scalability"
-              title="Multi-tenant API Infrastructure — Kreatoors AI"
-              description="A highly scalable and secure API gateway infrastructure serving 20K+ active users. Restructured backend request routing, rate limiting algorithms, and database pooling, reducing P95 latency from 800ms to 200ms."
-              chips={["20K+ Users", "200ms P95 Latency", "99.9% Uptime"]}
-              stack={["Node.js", "TypeScript", "Redis Cluster", "Kubernetes", "AWS"]}
-              slides={kreatoorsSlides}
-              screenMode={true}
-              alignLeft={alignLeft}
-            />
-            {(() => { alignLeft = !alignLeft; return null; })()}
+                <ProjectRow
+                  num="07"
+                  category="Systems · API Infrastructure · Scalability"
+                  title="Multi-tenant API Infrastructure — Kreatoors AI"
+                  description="A highly scalable and secure API gateway infrastructure serving 20K+ active users. Restructured backend request routing, rate limiting algorithms, and database pooling, reducing P95 latency from 800ms to 200ms."
+                  chips={["20K+ Users", "200ms P95 Latency", "99.9% Uptime"]}
+                  stack={["Node.js", "TypeScript", "Redis Cluster", "Kubernetes", "AWS"]}
+                  slides={kreatoorsSlides}
+                  screenMode={true}
+                  alignLeft={alignLeft}
+                />
+                {(() => { alignLeft = !alignLeft; return null; })()}
+              </>
+            )}
           </div>
         </div>
 
-        {/* ── SECTION 2: Open Source ──────────────────────────────── */}
+        {/* ── SECTION 2: iOS Native ───────────────────────────────── */}
         <div>
           <div className="border-t border-ink-5 pt-10 pb-4">
-            <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">02 // Open Source</h3>
-            <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Maintained Production Toolkits</h4>
+            <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">02 // iOS Native</h3>
+            <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">High-Performance Mobile Vision</h4>
           </div>
           <div className="flex flex-col">
             <ProjectRow
-              num="05"
-              category="Retail · Web · Full-stack"
-              title="Store POS — Point of Sale System"
-              description="A full-featured offline-first retail system with inventory management, sales reports, multi-cashier registers, barcode printing, and revenue analytics."
-              chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
-              stack={["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker", "SQLite"]}
-              slides={posSlides}
-              screenMode={true}
-              githubUrl="https://github.com/zaibaki/Store-POS"
+              num="03"
+              category="FoodTech · iOS · Computer Vision"
+              title="SmartChef — AI Recipe Recognition App"
+              description="Point-and-cook AI application running local YOLOv8 object recognition on iOS. Detects multiple kitchen ingredients simultaneously to compile custom AI recipes via OpenAI's GPT models."
+              chips={["YOLOv8 & OpenCV", "CoreML Local Inference", "AI Recipe Planner"]}
+              stack={["Swift", "SwiftUI", "UIKit", "iOS", "OpenAI API"]}
+              slides={smartchefSlides}
+              screenMode={false}
               alignLeft={alignLeft}
             />
             {(() => { alignLeft = !alignLeft; return null; })()}
           </div>
         </div>
 
-        {/* ── SECTION 3: iOS Native (Conditional) ──────────────────── */}
-        {showAll && (
-          <div>
-            <div className="border-t border-ink-5 pt-10 pb-4">
-              <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">03 // iOS Native</h3>
-              <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">High-Performance Mobile Vision</h4>
-            </div>
-            <div className="flex flex-col">
-              <ProjectRow
-                num="06"
-                category="FoodTech · iOS · Computer Vision"
-                title="SmartChef — AI Recipe Recognition App"
-                description="Point-and-cook AI application running local YOLOv8 object recognition on iOS. Detects multiple kitchen ingredients simultaneously to compile custom AI recipes via OpenAI's GPT models."
-                chips={["YOLOv8 & OpenCV", "CoreML Local Inference", "AI Recipe Planner"]}
-                stack={["Swift", "SwiftUI", "UIKit", "iOS", "OpenAI API"]}
-                slides={smartchefSlides}
-                screenMode={false}
-                alignLeft={alignLeft}
-              />
-              {(() => { alignLeft = !alignLeft; return null; })()}
-            </div>
+        {/* ── SECTION 3: Cross-Platform & Android ──────────────────── */}
+        <div>
+          <div className="border-t border-ink-5 pt-10 pb-4">
+            <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">03 // Cross-Platform &amp; Android</h3>
+            <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Full-Stack Mobile Applications</h4>
           </div>
-        )}
+          <div className="flex flex-col">
+            <ProjectRow
+              num="04"
+              category="AgriTech · Mobile · AI assistant"
+              title="BayKart — Agricultural Commodities Marketplace"
+              description="A multi-service platform connecting 10K+ African farmers directly to buyer markets. Integrated weather forecasting services, logistics pipelines, and a sisi-AI multimodal crop disease diagnostic assistant."
+              chips={["Real-time Pricing", "AI Crop Doctor", "Verified Buyers"]}
+              stack={["React Native", "Django", "AWS", "PostgreSQL", "Redis"]}
+              slides={baykartSlides}
+              screenMode={false}
+              alignLeft={alignLeft}
+            />
+            {(() => { alignLeft = !alignLeft; return null; })()}
 
-        {/* ── SECTION 4: Cross-Platform & Android (Conditional) ────── */}
+            <ProjectRow
+              num="05"
+              category="Productivity · Mobile · UX"
+              title="FocusFlow — Gamified Deep Work App"
+              description="A gamified mobile application helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with streaks and milestone achievements."
+              chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
+              stack={["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"]}
+              slides={focusSlides}
+              screenMode={false}
+              alignLeft={alignLeft}
+            />
+            {(() => { alignLeft = !alignLeft; return null; })()}
+          </div>
+        </div>
+
+        {/* ── SECTION 4: Open Source (Conditional) ────────────────── */}
         {showAll && (
           <div>
             <div className="border-t border-ink-5 pt-10 pb-4">
-              <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">04 // Cross-Platform &amp; Android</h3>
-              <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Full-Stack Mobile Applications</h4>
+              <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">04 // Open Source</h3>
+              <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Maintained Production Toolkits</h4>
             </div>
             <div className="flex flex-col">
-              <ProjectRow
-                num="07"
-                category="AgriTech · Mobile · AI assistant"
-                title="BayKart — Agricultural Commodities Marketplace"
-                description="A multi-service platform connecting 10K+ African farmers directly to buyer markets. Integrated weather forecasting services, logistics pipelines, and a sisi-AI multimodal crop disease diagnostic assistant."
-                chips={["Real-time Pricing", "AI Crop Doctor", "Verified Buyers"]}
-                stack={["React Native", "Django", "AWS", "PostgreSQL", "Redis"]}
-                slides={baykartSlides}
-                screenMode={false}
-                alignLeft={alignLeft}
-              />
-              {(() => { alignLeft = !alignLeft; return null; })()}
-
               <ProjectRow
                 num="08"
-                category="Productivity · Mobile · UX"
-                title="FocusFlow — Gamified Deep Work App"
-                description="A gamified mobile application helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with streaks and milestone achievements."
-                chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
-                stack={["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"]}
-                slides={focusSlides}
-                screenMode={false}
+                category="Retail · Web · Full-stack"
+                title="Store POS — Point of Sale System"
+                description="A full-featured offline-first retail system with inventory management, sales reports, multi-cashier registers, barcode printing, and revenue analytics."
+                chips={["650+ SKUs", "Multi-cashier", "Offline-first"]}
+                stack={["React", "Node.js", "Django", "PostgreSQL", "Redis", "Docker", "SQLite"]}
+                slides={posSlides}
+                screenMode={true}
+                githubUrl="https://github.com/zaibaki/Store-POS"
                 alignLeft={alignLeft}
               />
             </div>
@@ -556,7 +560,7 @@ export default function Projects() {
             onClick={() => setShowAll(!showAll)}
             className="font-mono text-[0.68rem] tracking-widest uppercase border border-ink-5 hover:border-[#4ade80] hover:text-[#4ade80] bg-ink-2 px-8 py-4 rounded transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(74,222,128,0.15)] hover:scale-[1.02]"
           >
-            {showAll ? "Collapse Mobile & iOS Projects" : "+ View 3 Mobile & iOS Projects"}
+            {showAll ? "Collapse Systems & Backend Projects" : "+ View 3 Systems & Backend Projects"}
           </button>
         </div>
 
