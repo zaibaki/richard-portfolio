@@ -15,60 +15,41 @@ interface HeroProject {
 
 const heroProjects: HeroProject[] = [
   {
-    id:       "baykart",
-    name:     "BayKart Marketplace",
-    tag:      "React Native / Django / AWS",
-    src:      "/images/marketplace-listing.png",
-    isMobile: true,
-    logs: [
-      "sys_init: connecting to AWS cluster...",
-      "db: postgresql://rds.baykart.internal connected",
-      "sisi_ai: loading Crop Doctor model (VGG16)...",
-      "model: accuracy verified at 94.8%",
-      "api: GET /api/v1/listings?region=nairobi - 200 (112ms)",
-      "broker: Redis cache hit rate: 84.2%"
-    ],
-    metrics: [
-      { label: "Active Sessions", value: "12,482/hr" },
-      { label: "AI Inference", value: "85ms" }
-    ]
-  },
-  {
-    id:       "smartchef",
-    name:     "SmartChef AI App",
-    tag:      "SwiftUI / UIKit / OpenAI API",
-    src:      "/images/smartchef/home.png",
-    isMobile: true,
-    logs: [
-      "ios_daemon: instantiating camera module...",
-      "vision: loading YOLOv8 custom weights...",
-      "openai: key validated, token limit OK",
-      "scan: user uploaded image (3.4MB PNG)",
-      "vision: detected [egg, tomato, cheese] (conf 97%)",
-      "ai_gen: recipe 'Savory Scramble' built in 1.4s"
-    ],
-    metrics: [
-      { label: "Vision Latency", value: "320ms" },
-      { label: "Recipe Gen Rate", value: "48 req/min" }
-    ]
-  },
-  {
-    id:       "pos",
-    name:     "Store POS System",
-    tag:      "React / Node.js / PostgreSQL",
-    src:      "/images/pos/pos-dashboard.png",
+    id:       "sciencebridge",
+    name:     "ScienceBridge AI",
+    tag:      "Python / FastAPI / Docker",
+    src:      "/images/sciencebridge-banner.jpg",
     isMobile: false,
     logs: [
-      "pos_kernel: initializing local daemon...",
-      "sync: fetching inventory snapshot (680 SKUs)",
-      "offline_db: sqlite local DB reconciled",
-      "sales: registering transaction TXN_729482...",
-      "printer: thermal driver status: ONLINE",
-      "analytics: pushing daily rollup to cluster - 201"
+      "sys_init: connecting to Postgres cluster...",
+      "db: postgresql://rds.sciencebridge.internal status: OK",
+      "agent: ingesting dataset compound_efficacy.csv...",
+      "agent: evaluating hypothesis: 'Compound X increases lifespan'...",
+      "code_gen: writing evaluation_script.py...",
+      "sandbox: executing Python code... Success. Accuracy: 98.2%"
     ],
     metrics: [
-      { label: "Local SKUs", value: "650+ Items" },
-      { label: "Sync Latency", value: "14ms" }
+      { label: "Active Sessions", value: "84 Runs/hr" },
+      { label: "Execution Time", value: "1.8s/run" }
+    ]
+  },
+  {
+    id:       "voiceagent",
+    name:     "LangGraph Voice Agent",
+    tag:      "LangGraph / FastAPI / OpenAI",
+    src:      "/images/voiceagent-banner.jpg",
+    isMobile: false,
+    logs: [
+      "voice_daemon: opening WebSocket stream at 24kHz PCM16...",
+      "openai: session created with gpt-4o-realtime...",
+      "user_audio: speech detected - transcribing...",
+      "state_manager: updating LangGraph agent state...",
+      "tool_request: executing Tavily Web Search...",
+      "tts_output: generating response 'Hello, I found...' - 200"
+    ],
+    metrics: [
+      { label: "RTT Latency", value: "320ms" },
+      { label: "Audio Bitrate", value: "192kbps" }
     ]
   },
   {
@@ -88,6 +69,25 @@ const heroProjects: HeroProject[] = [
     metrics: [
       { label: "Shield State", value: "14 Apps Blocked" },
       { label: "Deep Work Hr", value: "4.5hr/day" }
+    ]
+  },
+  {
+    id:       "pos",
+    name:     "Store POS System",
+    tag:      "React / Node.js / PostgreSQL",
+    src:      "/images/pos/pos-dashboard.png",
+    isMobile: false,
+    logs: [
+      "pos_kernel: initializing local daemon...",
+      "sync: fetching inventory snapshot (680 SKUs)",
+      "offline_db: sqlite local DB reconciled",
+      "sales: registering transaction TXN_729482...",
+      "printer: thermal driver status: ONLINE",
+      "analytics: pushing daily rollup to cluster - 201"
+    ],
+    metrics: [
+      { label: "Local SKUs", value: "650+ Items" },
+      { label: "Sync Latency", value: "14ms" }
     ]
   }
 ];
@@ -179,8 +179,6 @@ export default function Hero() {
         {/* ── Left: text ── */}
         <div className="flex flex-col gap-8">
 
-
-
           {/* Name */}
           <div className="float-up-2">
             <h1
@@ -195,14 +193,14 @@ export default function Hero() {
           {/* Role */}
           <div className="float-up-3">
             <p className="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-cyan-400 font-semibold">
-              Senior Full Stack &amp; Backend Engineer
+              Senior Software &amp; AI Systems Engineer
             </p>
           </div>
 
           {/* Pitch */}
           <p className="float-up-4 font-sans text-lg text-smoke leading-relaxed max-w-md">
-            Building highly reliable production systems across AI, FinTech &amp; SaaS.
-            6+ years shipping secure, performant applications.
+            Building production-ready systems specializing in stateful Agentic workflows.
+            6+ years shipping secure, performant software.
           </p>
 
           {/* CTAs */}
@@ -260,7 +258,7 @@ export default function Hero() {
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
                 <span className="font-mono text-[0.55rem] tracking-[0.2em] uppercase text-paper">RK_NODE_CLUSTER_v2.0</span>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-end gap-4">
                 <span className="font-mono text-[0.5rem] tracking-widest text-[#4ade80] font-bold">SYS_OK</span>
                 <span className="font-mono text-[0.5rem] text-smoke-2 tabular-nums">RTT: {latency}ms</span>
               </div>

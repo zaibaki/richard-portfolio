@@ -48,8 +48,9 @@ export default function ProjectCarousel({
     const t = setInterval(() => {
       setDir("next");
       setIndex((i) => {
+        const len = slides.length;
         const nextVal = i + 1;
-        if (nextVal >= deck.length) {
+        if (nextVal >= len) {
           setDeck(shuffle(slides));   // reshuffle at end of each cycle
           return 0;
         }
@@ -57,7 +58,7 @@ export default function ProjectCarousel({
       });
     }, interval);
     return () => clearInterval(t);
-  }, [paused, deck.length, interval, resetKey]);
+  }, [paused, slides, interval, resetKey]);
 
   useEffect(() => {
     if (deck[index]?.src) {

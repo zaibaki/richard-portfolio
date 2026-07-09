@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import ProjectCarousel, { type CarouselSlide } from "./ProjectCarousel";
 
 /* ── 01. ScienceBridge slides ────────────────── */
@@ -314,12 +317,13 @@ function ProjectRow({
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[0.58rem] tracking-widest uppercase text-smoke hover:text-cyan-400 transition-colors flex items-center gap-1.5 group/git"
+                className="font-mono text-[0.6rem] tracking-widest uppercase border border-ink-5 hover:border-[#4ade80] hover:text-[#4ade80] hover:shadow-[0_0_12px_rgba(74,222,128,0.15)] bg-ink-3 px-3 py-1.5 rounded flex items-center gap-2 transition-all duration-300 relative overflow-hidden group/git hover:scale-[1.03] active:scale-[0.97] cursor-pointer"
               >
-                <svg className="w-3.5 h-3.5 fill-current text-smoke-3 group-hover/git:text-cyan-400 transition-colors" viewBox="0 0 24 24">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] absolute top-1 right-1" style={{ animation: "pulse-dot 2.5s ease-in-out infinite" }} />
+                <svg className="w-3.5 h-3.5 fill-current text-smoke-3 group-hover/git:text-[#4ade80] transition-colors" viewBox="0 0 24 24">
                   <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
                 </svg>
-                GitHub Code →
+                GitHub Code
               </a>
             )}
           </div>
@@ -345,13 +349,15 @@ function ProjectRow({
 }
 
 export default function Projects() {
+  const [showAll, setShowAll] = useState(false);
+  
   // Global alternate counter
   let alignLeft = true;
 
   return (
     <section id="work" className="relative">
 
-      {/* Section header */}
+      {/* Section header with filter tabs */}
       <div className="relative overflow-hidden border-t border-ink-5">
         <Image
           src="/images/work-bg.jpg"
@@ -361,11 +367,37 @@ export default function Projects() {
           style={{ opacity: 0.05, objectPosition: "center" }}
           aria-hidden="true"
         />
-        <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-16 pt-20 pb-10">
-          <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-smoke-2 mb-3">Portfolio Projects</p>
-          <h2 className="font-sans text-5xl md:text-7xl font-black text-paper tracking-tight leading-none">
-            What I Build.
-          </h2>
+        <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-16 pt-20 pb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-smoke-2 mb-3">Portfolio Projects</p>
+            <h2 className="font-sans text-5xl md:text-7xl font-black text-paper tracking-tight leading-none">
+              What I Build.
+            </h2>
+          </div>
+          <div className="flex gap-2.5 self-start sm:self-end z-20">
+            <button
+              onClick={() => setShowAll(false)}
+              className={`px-4 py-2.5 font-mono text-[0.58rem] tracking-widest uppercase border transition-all duration-300 cursor-pointer ${
+                !showAll
+                  ? "bg-paper text-ink border-paper shadow-lg font-bold"
+                  : "border-ink-5 text-smoke hover:border-smoke hover:text-paper"
+              }`}
+              style={{ borderRadius: "0.2rem" }}
+            >
+              Systems &amp; AI (5)
+            </button>
+            <button
+              onClick={() => setShowAll(true)}
+              className={`px-4 py-2.5 font-mono text-[0.58rem] tracking-widest uppercase border transition-all duration-300 cursor-pointer ${
+                showAll
+                  ? "bg-paper text-ink border-paper shadow-lg font-bold"
+                  : "border-ink-5 text-smoke hover:border-smoke hover:text-paper"
+              }`}
+              style={{ borderRadius: "0.2rem" }}
+            >
+              All Projects (8)
+            </button>
+          </div>
         </div>
       </div>
 
@@ -373,9 +405,9 @@ export default function Projects() {
 
         {/* ── SECTION 1: Full-Stack AI Engineering ────────────────── */}
         <div>
-          <div className="border-t border-ink-5 pt-8 pb-4">
-            <h3 className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-cyan-400 font-semibold mb-1.5">01 // Full-Stack AI Engineering</h3>
-            <h4 className="font-sans text-2xl md:text-3xl font-black text-paper tracking-tight">Stateful Agents &amp; Scaled Architecture</h4>
+          <div className="border-t border-ink-5 pt-10 pb-4">
+            <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">01 // Full-Stack AI Engineering</h3>
+            <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Stateful Agents &amp; Scaled Architecture</h4>
           </div>
           <div className="flex flex-col">
             <ProjectRow
@@ -435,72 +467,15 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* ── SECTION 2: iOS Native ───────────────────────────────── */}
+        {/* ── SECTION 2: Open Source ──────────────────────────────── */}
         <div>
-          <div className="border-t border-ink-5 pt-8 pb-4">
-            <h3 className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-cyan-400 font-semibold mb-1.5">02 // iOS Native</h3>
-            <h4 className="font-sans text-2xl md:text-3xl font-black text-paper tracking-tight">High-Performance Mobile Vision</h4>
+          <div className="border-t border-ink-5 pt-10 pb-4">
+            <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">02 // Open Source</h3>
+            <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Maintained Production Toolkits</h4>
           </div>
           <div className="flex flex-col">
             <ProjectRow
               num="05"
-              category="FoodTech · iOS · Computer Vision"
-              title="SmartChef — AI Recipe Recognition App"
-              description="Point-and-cook AI application running local YOLOv8 object recognition on iOS. Detects multiple kitchen ingredients simultaneously to compile custom AI recipes via OpenAI's GPT models."
-              chips={["YOLOv8 & OpenCV", "CoreML Local Inference", "AI Recipe Planner"]}
-              stack={["Swift", "SwiftUI", "UIKit", "iOS", "OpenAI API"]}
-              slides={smartchefSlides}
-              screenMode={false}
-              alignLeft={alignLeft}
-            />
-            {(() => { alignLeft = !alignLeft; return null; })()}
-          </div>
-        </div>
-
-        {/* ── SECTION 3: Cross-Platform & Android ──────────────────── */}
-        <div>
-          <div className="border-t border-ink-5 pt-8 pb-4">
-            <h3 className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-cyan-400 font-semibold mb-1.5">03 // Cross-Platform &amp; Android</h3>
-            <h4 className="font-sans text-2xl md:text-3xl font-black text-paper tracking-tight">Full-Stack Mobile Applications</h4>
-          </div>
-          <div className="flex flex-col">
-            <ProjectRow
-              num="06"
-              category="AgriTech · Mobile · AI assistant"
-              title="BayKart — Agricultural Commodities Marketplace"
-              description="A multi-service platform connecting 10K+ African farmers directly to buyer markets. Integrated weather forecasting services, logistics pipelines, and a sisi-AI multimodal crop disease diagnostic assistant."
-              chips={["Real-time Pricing", "AI Crop Doctor", "Verified Buyers"]}
-              stack={["React Native", "Django", "AWS", "PostgreSQL", "Redis"]}
-              slides={baykartSlides}
-              screenMode={false}
-              alignLeft={alignLeft}
-            />
-            {(() => { alignLeft = !alignLeft; return null; })()}
-
-            <ProjectRow
-              num="07"
-              category="Productivity · Mobile · UX"
-              title="FocusFlow — Gamified Deep Work App"
-              description="A gamified mobile application helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with streaks and milestone achievements."
-              chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
-              stack={["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"]}
-              slides={focusSlides}
-              screenMode={false}
-              alignLeft={alignLeft}
-            />
-            {(() => { alignLeft = !alignLeft; return null; })()}
-          </div>
-        </div>
-
-        {/* ── SECTION 4: Open Source ──────────────────────────────── */}
-        <div>
-          <div className="border-t border-ink-5 pt-8 pb-4">
-            <h3 className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-cyan-400 font-semibold mb-1.5">04 // Open Source</h3>
-            <h4 className="font-sans text-2xl md:text-3xl font-black text-paper tracking-tight">Maintained Production Toolkits</h4>
-          </div>
-          <div className="flex flex-col">
-            <ProjectRow
-              num="08"
               category="Retail · Web · Full-stack"
               title="Store POS — Point of Sale System"
               description="A full-featured offline-first retail system with inventory management, sales reports, multi-cashier registers, barcode printing, and revenue analytics."
@@ -511,7 +486,78 @@ export default function Projects() {
               githubUrl="https://github.com/zaibaki/Store-POS"
               alignLeft={alignLeft}
             />
+            {(() => { alignLeft = !alignLeft; return null; })()}
           </div>
+        </div>
+
+        {/* ── SECTION 3: iOS Native (Conditional) ──────────────────── */}
+        {showAll && (
+          <div>
+            <div className="border-t border-ink-5 pt-10 pb-4">
+              <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">03 // iOS Native</h3>
+              <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">High-Performance Mobile Vision</h4>
+            </div>
+            <div className="flex flex-col">
+              <ProjectRow
+                num="06"
+                category="FoodTech · iOS · Computer Vision"
+                title="SmartChef — AI Recipe Recognition App"
+                description="Point-and-cook AI application running local YOLOv8 object recognition on iOS. Detects multiple kitchen ingredients simultaneously to compile custom AI recipes via OpenAI's GPT models."
+                chips={["YOLOv8 & OpenCV", "CoreML Local Inference", "AI Recipe Planner"]}
+                stack={["Swift", "SwiftUI", "UIKit", "iOS", "OpenAI API"]}
+                slides={smartchefSlides}
+                screenMode={false}
+                alignLeft={alignLeft}
+              />
+              {(() => { alignLeft = !alignLeft; return null; })()}
+            </div>
+          </div>
+        )}
+
+        {/* ── SECTION 4: Cross-Platform & Android (Conditional) ────── */}
+        {showAll && (
+          <div>
+            <div className="border-t border-ink-5 pt-10 pb-4">
+              <h3 className="font-mono text-[0.72rem] md:text-[0.78rem] tracking-[0.25em] uppercase text-[#4ade80] font-bold mb-2">04 // Cross-Platform &amp; Android</h3>
+              <h4 className="font-sans text-3xl md:text-4xl font-black text-paper tracking-tight leading-tight">Full-Stack Mobile Applications</h4>
+            </div>
+            <div className="flex flex-col">
+              <ProjectRow
+                num="07"
+                category="AgriTech · Mobile · AI assistant"
+                title="BayKart — Agricultural Commodities Marketplace"
+                description="A multi-service platform connecting 10K+ African farmers directly to buyer markets. Integrated weather forecasting services, logistics pipelines, and a sisi-AI multimodal crop disease diagnostic assistant."
+                chips={["Real-time Pricing", "AI Crop Doctor", "Verified Buyers"]}
+                stack={["React Native", "Django", "AWS", "PostgreSQL", "Redis"]}
+                slides={baykartSlides}
+                screenMode={false}
+                alignLeft={alignLeft}
+              />
+              {(() => { alignLeft = !alignLeft; return null; })()}
+
+              <ProjectRow
+                num="08"
+                category="Productivity · Mobile · UX"
+                title="FocusFlow — Gamified Deep Work App"
+                description="A gamified mobile application helping developers and creators block distractions, track focus sessions, and build long-term productivity habits with streaks and milestone achievements."
+                chips={["Pomodoro Timer", "App Blocker", "Focus Analytics"]}
+                stack={["React Native", "Expo", "TypeScript", "SQLite", "Victory Charts", "Tailwind CSS"]}
+                slides={focusSlides}
+                screenMode={false}
+                alignLeft={alignLeft}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Expand / Collapse Button */}
+        <div className="flex justify-center pt-8 border-t border-ink-5">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="font-mono text-[0.68rem] tracking-widest uppercase border border-ink-5 hover:border-[#4ade80] hover:text-[#4ade80] bg-ink-2 px-8 py-4 rounded transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(74,222,128,0.15)] hover:scale-[1.02]"
+          >
+            {showAll ? "Collapse Mobile & iOS Projects" : "+ View 3 Mobile & iOS Projects"}
+          </button>
         </div>
 
       </div>
