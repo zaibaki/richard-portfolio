@@ -340,9 +340,15 @@ function ProjectRow({
 
       {/* Visual / Carousel Column (DOM element 2 - alternates on desktop) */}
       <div className={`lg:col-span-6 flex justify-center w-full ${alignLeft ? "lg:order-1" : "lg:order-2"}`}>
-        <div className="border border-ink-5 overflow-hidden flex flex-col w-full" style={{ borderRadius: "0.4rem", boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
-          <ProjectCarousel slides={slides} interval={4000} screenMode={screenMode} />
-        </div>
+        {screenMode ? (
+          <div className="border border-ink-5 overflow-hidden flex flex-col w-full" style={{ borderRadius: "0.4rem", boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+            <ProjectCarousel slides={slides} interval={4000} screenMode={screenMode} />
+          </div>
+        ) : (
+          <div className="flex justify-center w-full">
+            <ProjectCarousel slides={slides} interval={4000} screenMode={screenMode} />
+          </div>
+        )}
       </div>
 
     </div>
